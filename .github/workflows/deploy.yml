@@ -13,9 +13,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install Docker using official Docker script
-      run: |
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
+  run: |
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
 
     - name: Build Docker image
       run: docker build -t paper-social ./app
