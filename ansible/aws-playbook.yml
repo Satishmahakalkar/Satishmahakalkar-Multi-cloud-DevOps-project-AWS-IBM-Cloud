@@ -3,7 +3,7 @@
   tasks:
     - name: Install prerequisites
       apt:
-        name: 
+        name:
           - apt-transport-https
           - ca-certificates
           - curl
@@ -27,26 +27,7 @@
         state: latest
         update_cache: yes
 
-    - name: Ensure Docker service is running
-      service:
-        name: docker
-        state: started
-        enabled: true
-
-    - name: Copy application code
-      copy:
-        src: ./app/
-        dest: /home/ubuntu/app/
-        owner: ubuntu
-        group: ubuntu
-        mode: 0755
-
-    - name: Build Docker image for app
-      docker_image:
-        path: /home/ubuntu/app
-        name: paper-social
-
-    - name: Run app container
+    - name: Run Docker container
       docker_container:
         name: app
         image: paper-social
