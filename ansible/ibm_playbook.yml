@@ -11,21 +11,12 @@
         state: present
         update_cache: yes
 
-    - name: Add Docker GPG key
-      apt_key:
-        url: https://download.docker.com/linux/ubuntu/gpg
-        state: present
-
-    - name: Add Docker repository
-      apt_repository:
-        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
-        state: present
-
-    - name: Install Docker CE
-      apt:
-        name: docker-ce
-        state: latest
-        update_cache: yes
+    - name: Install Docker using official convenience script
+      shell: |
+        curl -fsSL https://get.docker.com -o get-docker.sh
+        sh get-docker.sh
+      args:
+        executable: /bin/bash
 
     - name: Run Docker container
       docker_container:
