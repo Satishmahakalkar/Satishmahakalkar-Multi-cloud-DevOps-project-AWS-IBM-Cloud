@@ -1,0 +1,14 @@
+# GitHub Actions CI/CD pipeline
+name: Deploy to Multi-Cloud
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Docker
+      run: sudo apt-get install -y docker.io
+    - name: Build Docker image
+      run: docker build -t paper-social ./app
